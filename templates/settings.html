@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page-container">
+    <div class="page-header">
+        <h1 class="page-title">
+            <i class="bi bi-gear-fill"></i> Settings
+        </h1>
+        <p class="page-subtitle">Manage your account and application data.</p>
+    </div>
+
+    <!-- User Profile Section -->
+    <section class="section-block">
+        <h2 class="section-title">
+            <i class="bi bi-person-circle"></i> Profile
+        </h2>
+        <div class="profile-card">
+            <div class="profile-avatar">
+                <i class="bi bi-person-fill"></i>
+            </div>
+            <div class="profile-details">
+                <h3>{{ username }}</h3>
+                <p class="text-muted">{{ email }}</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Data Management Section -->
+    <section class="section-block">
+        <h2 class="section-title">
+            <i class="bi bi-database-fill"></i> Data Management
+        </h2>
+        <div class="data-management-card">
+            <div class="data-management-info">
+                <h4><i class="bi bi-exclamation-triangle-fill text-danger"></i> Clear All Data</h4>
+                <p class="text-muted">
+                    Permanently delete all your uploaded resumes, candidate results, reports, 
+                    dashboard statistics, and activity logs. 
+                    <strong class="text-danger">This action cannot be undone.</strong>
+                </p>
+            </div>
+            <button class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#clearDataModal">
+                <i class="bi bi-trash-fill"></i> Clear All Data
+            </button>
+        </div>
+    </section>
+
+    <!-- Account Section -->
+    <section class="section-block">
+        <h2 class="section-title">
+            <i class="bi bi-shield-lock-fill"></i> Account
+        </h2>
+        <div class="account-card">
+            <p class="text-muted">
+                <i class="bi bi-info-circle-fill"></i> 
+                Logging out only ends your session. Your data is safely stored and will be 
+                available when you log back in.
+            </p>
+            <a href="{{ url_for('auth.logout') }}" class="btn btn-outline-secondary">
+                <i class="bi bi-box-arrow-right"></i> Logout
+            </a>
+        </div>
+    </section>
+</div>
+
+<!-- Clear Data Confirmation Modal -->
+<div class="modal fade" id="clearDataModal" tabindex="-1" aria-labelledby="clearDataModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <h5 class="modal-title" id="clearDataModalLabel">
+                    <i class="bi bi-exclamation-triangle-fill text-danger"></i> 
+                    Clear All Data
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center mb-4">
+                    <i class="bi bi-trash-fill" style="font-size: 3rem; color: #DC2626;"></i>
+                </div>
+                <p class="fs-5 text-center">
+                    Are you sure you want to permanently delete all your data?
+                </p>
+                <p class="text-center text-danger fw-bold">
+                    This action cannot be undone.
+                </p>
+                <ul class="list-group list-group-flush mt-3">
+                    <li class="list-group-item d-flex align-items-center">
+                        <i class="bi bi-file-earmark-text me-2 text-muted"></i> Uploaded resumes
+                    </li>
+                    <li class="list-group-item d-flex align-items-center">
+                        <i class="bi bi-people-fill me-2 text-muted"></i> Candidate analysis results
+                    </li>
+                    <li class="list-group-item d-flex align-items-center">
+                        <i class="bi bi-file-earmark-bar-graph me-2 text-muted"></i> Reports
+                    </li>
+                    <li class="list-group-item d-flex align-items-center">
+                        <i class="bi bi-speedometer2 me-2 text-muted"></i> Dashboard statistics
+                    </li>
+                    <li class="list-group-item d-flex align-items-center">
+                        <i class="bi bi-clock-history me-2 text-muted"></i> Activity log
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer border-0">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <i class="bi bi-x-circle"></i> Cancel
+                </button>
+                <form action="{{ url_for('reports.clear_data') }}" method="POST" style="display: inline;">
+                    <button type="submit" class="btn btn-danger" id="confirmClearData">
+                        <i class="bi bi-trash-fill"></i> Yes, Delete Everything
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const confirmBtn = document.getElementById('confirmClearData');
+    if (confirmBtn) {
+        confirmBtn.addEventListener('click', function() {
+            this.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Deleting...';
+            this.disabled = true;
+        });
+    }
+});
+</script>
+{% endblock %}
+

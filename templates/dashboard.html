@@ -1,0 +1,250 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page-container">
+    <div class="page-header">
+        <h1 class="page-title">
+            <i class="bi bi-speedometer2"></i> Recruitment Dashboard
+        </h1>
+        <p class="page-subtitle">Live overview of your current screening pipeline. <small class="text-muted">Auto-refreshes every 5s. Last refresh: <span id="lastRefreshTime">now</span></small></p>
+    </div>
+
+    <!-- 1. Screening Pipeline KPIs -->
+    <section class="section-block">
+        <h2 class="section-title">
+            <i class="bi bi-bar-chart-fill"></i> Screening Pipeline
+        </h2>
+        <div class="kpi-grid">
+            <div class="kpi-card kpi-total">
+                <div class="kpi-icon"><i class="bi bi-file-earmark-text"></i></div>
+                <div class="kpi-content">
+                    <span class="kpi-label">Total Candidates</span>
+                    <span class="kpi-value">{{ total_candidates }}</span>
+                </div>
+            </div>
+            <div class="kpi-card kpi-shortlisted">
+                <div class="kpi-icon"><i class="bi bi-check-circle-fill"></i></div>
+                <div class="kpi-content">
+                    <span class="kpi-label">Shortlisted</span>
+                    <span class="kpi-value">{{ shortlisted }}</span>
+                </div>
+            </div>
+            <div class="kpi-card kpi-rejected">
+                <div class="kpi-icon"><i class="bi bi-x-circle-fill"></i></div>
+                <div class="kpi-content">
+                    <span class="kpi-label">Rejected</span>
+                    <span class="kpi-value">{{ rejected }}</span>
+                </div>
+            </div>
+            <div class="kpi-card kpi-pending">
+                <div class="kpi-icon"><i class="bi bi-hourglass-split"></i></div>
+                <div class="kpi-content">
+                    <span class="kpi-label">Pending</span>
+                    <span class="kpi-value">{{ pending_count }}</span>
+                </div>
+            </div>
+        </div>
+        {% if not job_description %}
+        <div class="alert alert-warning mt-3">
+            <i class="bi bi-exclamation-triangle-fill"></i>
+            No Job Description saved yet. Set one up in <strong>Resume Screening</strong> before analyzing resumes.
+        </div>
+        {% endif %}
+    </section>
+
+    <!-- 2. Pipeline & Rejection Charts -->
+    <div class="chart-grid">
+        <section class="section-block">
+            <h2 class="section-title">
+                <i class="bi bi-pie-chart-fill"></i> Screening Pipeline
+            </h2>
+            <div class="chart-container">
+                <canvas id="pipelineChart"></canvas>
+            </div>
+        </section>
+
+        <section class="section-block">
+            <h2 class="section-title">
+                <i class="bi bi-bar-chart-fill"></i> Rejection Reasons
+            </h2>
+            <div class="chart-container">
+                <canvas id="rejectionChart"></canvas>
+            </div>
+        </section>
+    </div>
+
+<!-- 3. Recent Activity (2 cards, each with vertical scroll) -->
+    <section class="section-block">
+        <h2 class="section-title">
+            <i class="bi bi-clock-history"></i> Recent Activity
+            <span style="font-size: 0.7rem; font-weight: normal; color: var(--text-muted);">(auto-updates)</span>
+        </h2>
+        <div class="activity-grid">
+            <!-- Recent Candidates (Live) -->
+            <div class="activity-card">
+                <h3 class="activity-title">
+                    <i class="bi bi-people-fill"></i> Recent Candidates (Analyzed)
+                </h3>
+                <div class="activity-feed-container" id="recentAnalyzedContainer">
+                    {% if recent_analyzed %}
+                        {% for c in recent_analyzed %}
+                        {% set score = c.get('scores', {}).get('overall_score', 0) %}
+                        {% set status = c.get('scores', {}).get('status', '-') %}
+                        {% set is_shortlisted = status == 'Shortlisted' %}
+                        <div class="activity-feed-card">
+                            <div class="activity-feed-icon {{ 'icon-shortlist' if is_shortlisted else 'icon-reject' }}">
+                                <i class="bi {{ 'bi-check-circle-fill' if is_shortlisted else 'bi-x-circle-fill' }}"></i>
+                            </div>
+                            <div class="activity-feed-content">
+                                <div class="activity-feed-title">{{ c.get('name', 'Unknown') }} — {{ c.get('role', 'N/A') }}</div>
+                                <div class="activity-feed-desc">Match score: {{ score }}%</div>
+                                <div class="activity-feed-meta">
+                                    <span class="activity-feed-badge {{ 'badge-shortlisted' if is_shortlisted else 'badge-rejected' }}">{{ status }}</span>
+                                </div>
+                            </div>
+                            <div class="activity-feed-time">{{ c.get('display_time', '') }}</div>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="empty-state">
+                            <i class="bi bi-inbox"></i>
+                            <p>No data available. Run <strong>Analyze Resumes</strong> on the Resume Screening page.</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Activity Feed (Live) -->
+            <div class="activity-card">
+                <h3 class="activity-title">
+                    <i class="bi bi-activity"></i> Activity Log
+                </h3>
+                <div class="activity-feed-container" id="activityFeedContainer">
+                    {% set icon_map = {'upload': 'bi-cloud-arrow-up-fill', 'analyze': 'bi-robot', 'shortlist': 'bi-check-circle-fill', 'reject': 'bi-x-circle-fill', 'report': 'bi-file-earmark-bar-graph', 'delete': 'bi-trash3-fill', 'save_job': 'bi-save-fill', 'login': 'bi-box-arrow-in-right'} %}
+                    {% set status_color_map = {'success': '#16A34A', 'warning': '#F59E0B', 'error': '#DC2626'} %}
+                    {% if recent_activities %}
+                        {% for activity in recent_activities %}
+                        {% set act = activity.get('action', '') %}
+                        {% set icon_class = icon_map.get(act, 'bi-info-circle-fill') %}
+                        {% set st = activity.get('status', '') %}
+                        {% set color = status_color_map.get(st, '#64748B') %}
+                        <div class="activity-feed-card">
+                            <div class="activity-feed-icon" style="background: {{ color }}15; color: {{ color }};">
+                                <i class="bi {{ icon_class }}"></i>
+                            </div>
+                            <div class="activity-feed-content">
+                                <div class="activity-feed-title">{{ activity.get('details', '') }}</div>
+                                <div class="activity-feed-desc">{{ activity.get('action', '')|capitalize }} action</div>
+                                <div class="activity-feed-meta">
+                                    {% if activity.get('candidate_name') %}<span class="activity-feed-candidate"><i class="bi bi-person-fill"></i> {{ activity.get('candidate_name') }}</span>{% endif %}
+                                    <span class="activity-feed-status-dot" style="background: {{ color }};"></span>
+                                    <span style="color: {{ color }}; font-size: 0.75rem; font-weight: 500;">{{ st|capitalize if st else 'Info' }}</span>
+                                </div>
+                            </div>
+                            <div class="activity-feed-time">{{ activity.get('display_time', '') }}</div>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="empty-state">
+                            <i class="bi bi-inbox"></i>
+                            <p>No recent activity yet. Upload and analyze resumes to see activities here.</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    const textColor = isDark ? '#E2E8F0' : '#64748B';
+    const gridColor = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)';
+
+    // Pipeline Chart (Doughnut) - store globally for auto-refresh
+    const pipelineCtx = document.getElementById('pipelineChart').getContext('2d');
+    window.pipelineChartInstance = new Chart(pipelineCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Shortlisted', 'Rejected', 'Pending'],
+            datasets: [{
+                data: [{{ shortlisted }}, {{ rejected }}, {{ pending_count }}],
+                backgroundColor: ['#16A34A', '#DC2626', '#F59E0B'],
+                borderWidth: 2,
+                borderColor: isDark ? '#1E293B' : '#FFFFFF',
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: { color: textColor, padding: 16, usePointStyle: true, font: { size: 12 } }
+                }
+            },
+            cutout: '65%',
+        }
+    });
+
+    // Rejection Reasons Chart (Horizontal Bar) - store globally for auto-refresh
+    const rejectionData = {{ rejection_reasons | tojson | safe }};
+    const labels = Object.keys(rejectionData);
+    const values = Object.values(rejectionData);
+    const barColors = {
+        'Skills Missing': '#DC2626',
+        'Experience Mismatch': '#F97316',
+        'Degree Mismatch': '#F59E0B',
+        'Location Mismatch': '#3B82F6',
+        'Role Mismatch': '#8B5CF6',
+        'Department Mismatch': '#EC4899'
+    };
+
+    const nonZeroLabels = labels.filter((_, i) => values[i] > 0);
+    const nonZeroValues = values.filter(v => v > 0);
+
+    if (nonZeroLabels.length > 0) {
+        const rejectionCtx = document.getElementById('rejectionChart').getContext('2d');
+        window.rejectionChartInstance = new Chart(rejectionCtx, {
+            type: 'bar',
+            data: {
+                labels: nonZeroLabels,
+                datasets: [{
+                    data: nonZeroValues,
+                    backgroundColor: nonZeroLabels.map(l => barColors[l] || '#6B7280'),
+                    borderRadius: 6,
+                    borderSkipped: false,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                indexAxis: 'y',
+                plugins: {
+                    legend: { display: false },
+                    tooltip: { callbacks: { label: (ctx) => `${ctx.raw} candidate(s)` } }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        ticks: { stepSize: 1, color: textColor, font: { size: 11 } },
+                        grid: { color: gridColor }
+                    },
+                    y: {
+                        ticks: { color: textColor, font: { size: 12, weight: 'bold' } },
+                        grid: { display: false }
+                    }
+                }
+            }
+        });
+    } else {
+        const container = document.getElementById('rejectionChart').parentElement;
+        container.innerHTML = '<div class="empty-state"><i class="bi bi-inbox"></i><p>No rejection data available yet.</p></div>';
+    }
+});
+</script>
+{% endblock %}

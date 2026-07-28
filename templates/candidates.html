@@ -1,0 +1,339 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page-container">
+    <div class="page-header">
+        <h1 class="page-title">
+            <i class="bi bi-people-fill"></i> Candidate Results
+        </h1>
+        <p class="page-subtitle">Ranked candidates with ATS-style detailed matching reports. Candidates who do not satisfy all mandatory requirements are rejected.</p>
+    </div>
+
+    {% if candidates %}
+    <!-- Ranking Table -->
+    <section class="section-block">
+        <h2 class="section-title">
+            <i class="bi bi-trophy-fill"></i> Candidate Ranking
+        </h2>
+        <p class="text-muted">{{ total }} candidate(s) ranked by match score</p>
+        <div class="table-responsive">
+            <table class="table ranking-table" id="rankingTable">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Candidate</th>
+                        <th>Score</th>
+                        <th>Status</th>
+                        <th>Experience</th>
+                        <th>Education</th>
+                        <th>Location</th>
+                        <th>Missing Skills</th>
+                        <th>Detail</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for c in candidates %}
+                    {% set scores = c.get('scores', {}) %}
+                    <tr class="candidate-row" data-id="{{ c.get('id', '') }}">
+                        <td class="rank-cell">{{ loop.index }}</td>
+                        <td>
+                            <strong>{{ c.get('name', 'Unknown') }}</strong>
+                            <small class="d-block text-muted">{{ c.get('email', '') }}</small>
+                        </td>
+                        <td>
+                            <div class="score-bar">
+                                <div class="score-fill" style="width: {{ scores.get('overall_score', 0) }}%; background: {{ '#16A34A' if scores.get('overall_score', 0) >= 60 else '#F59E0B' if scores.get('overall_score', 0) >= 40 else '#DC2626' }};"></div>
+                                <span class="score-text">{{ scores.get('overall_score', 0) }}%</span>
+                            </div>
+                        </td>
+                        <td>
+                            {% set status = scores.get('status', '-') %}
+                            {% if status == 'Shortlisted' %}
+                            <span class="badge badge-success"><i class="bi bi-check-circle-fill"></i> Shortlisted</span>
+                            {% else %}
+                            <span class="badge badge-danger"><i class="bi bi-x-circle-fill"></i> Rejected</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ c.get('experience_years', 0) }} yrs</td>
+                        <td>{{ c.get('education', ['N/A'])|join(', ') }}</td>
+                        <td>{{ scores.get('location', 'N/A') }}</td>
+                        <td>
+                            {% set missing = scores.get('missing_skills', []) %}
+                            {% if missing %}
+                            <span class="badge badge-warning">{{ missing|length }} missing</span>
+                            {% else %}
+                            <span class="badge badge-success">None</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <button class="btn btn-sm btn-outline-primary view-detail" data-id="{{ c.get('id', '') }}" onclick="toggleCandidateDetail('{{ c.get('id', '') }}')">
+                                <i class="bi bi-eye-fill"></i> View
+                            </button>
+                        </td>
+                    </tr>
+                    <!-- Detail Row (hidden) -->
+                    <tr class="detail-row" id="detail-{{ c.get('id', '') }}" style="display:none;">
+                        <td colspan="9">
+                            <div class="candidate-detail-panel">
+                                <div class="detail-loading">
+                                    <div class="spinner-border text-primary" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Top 3 Candidates -->
+    {% set top3 = candidates[:3] %}
+    <section class="section-block">
+        <h2 class="section-title">
+            <i class="bi bi-trophy-fill"></i> Top Candidates
+        </h2>
+        <div class="top-candidates-grid">
+            {% set medals = ['🥇', '🥈', '🥉'] %}
+            {% for c in top3 %}
+            {% set scores = c.get('scores', {}) %}
+            <div class="top-candidate-card">
+                <div class="medal">{{ medals[loop.index0] }}</div>
+                <h4>{{ c.get('name', 'Unknown') }}</h4>
+                <div class="top-score">{{ scores.get('overall_score', 0) }}%</div>
+                {% set status = scores.get('status', '-') %}
+                {% if status == 'Shortlisted' %}
+                <span class="badge badge-success">Shortlisted</span>
+                {% else %}
+                <span class="badge badge-danger">Rejected</span>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    {% else %}
+    <div class="empty-state main-empty">
+        <i class="bi bi-inbox-fill"></i>
+        <h3>No Analyzed Candidates Yet</h3>
+        <p>Go to <strong>Resume Screening</strong> to upload resumes, set a job description, and click Analyze Resumes.</p>
+        <a href="{{ url_for('screening.screening') }}" class="btn btn-primary">
+            <i class="bi bi-file-earmark-text"></i> Go to Resume Screening
+        </a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Candidate detail data cache
+const candidateData = {};
+
+function toggleCandidateDetail(id) {
+    const row = document.getElementById('detail-' + id);
+    if (!row) return;
+
+    const allDetailRows = document.querySelectorAll('.detail-row');
+
+    // Close other detail rows
+    allDetailRows.forEach(r => {
+        if (r.id !== 'detail-' + id) {
+            r.style.display = 'none';
+        }
+    });
+
+    if (row.style.display === 'table-row') {
+        row.style.display = 'none';
+        return;
+    }
+
+    row.style.display = 'table-row';
+
+    // Load data if not cached
+    if (candidateData[id]) {
+        renderDetail(row.querySelector('.candidate-detail-panel'), candidateData[id]);
+    } else {
+        const panel = row.querySelector('.candidate-detail-panel');
+        // Show loading
+        panel.innerHTML = '<div class="detail-loading"><div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div></div>';
+
+        fetch('{{ url_for("candidates.api_ranking") }}')
+            .then(r => {
+                if (!r.ok) throw new Error('Failed to fetch candidate data');
+                return r.json();
+            })
+            .then(data => {
+                const c = data.find(d => d.id === id);
+                if (c) {
+                    candidateData[id] = c;
+                    renderDetail(panel, c);
+                } else {
+                    panel.innerHTML = '<div class="empty-state"><i class="bi bi-exclamation-triangle-fill"></i><p>Candidate data not found. Please re-run analysis.</p></div>';
+                }
+            })
+            .catch(err => {
+                console.error('Error loading candidate detail:', err);
+                panel.innerHTML = '<div class="empty-state"><i class="bi bi-exclamation-triangle-fill"></i><p>Failed to load candidate details. Please try again.</p></div>';
+            });
+    }
+}
+
+/**
+ * Safely render candidate detail panel.
+ * Handles missing/empty fields gracefully without throwing errors.
+ */
+function renderDetail(container, c) {
+    const statusClass = c.status === 'Shortlisted' ? 'success' : 'danger';
+    const statusIcon = c.status === 'Shortlisted' ? 'bi-check-circle-fill' : 'bi-x-circle-fill';
+
+    // Safely format education (handle both array and string)
+    let educationStr = 'N/A';
+    if (Array.isArray(c.education) && c.education.length > 0) {
+        educationStr = c.education.join(', ');
+    } else if (typeof c.education === 'string' && c.education) {
+        educationStr = c.education;
+    }
+
+    // Safely format fields
+    const safeStr = (val, fallback) => (val ? val.toString() : fallback || '-');
+    const safeList = (arr) => (Array.isArray(arr) ? arr : []);
+    const safeHtml = (text) => {
+        if (!text) return '';
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    };
+
+    container.innerHTML = `
+        <div class="detail-header">
+            <div class="detail-header-info">
+                <h4>${safeHtml(c.name)}</h4>
+                <p class="text-muted mb-1"><i class="bi bi-envelope-fill"></i> ${safeHtml(c.email)} &nbsp;|&nbsp; <i class="bi bi-telephone-fill"></i> ${safeHtml(c.phone)}</p>
+                <p class="text-muted"><strong>Experience:</strong> ${safeStr(c.experience_years)} yrs &nbsp;|&nbsp; <strong>Education:</strong> ${safeHtml(educationStr)} &nbsp;|&nbsp; <strong>Role:</strong> ${safeStr(c.role)} &nbsp;|&nbsp; <strong>Department:</strong> ${safeStr(c.department)}</p>
+            </div>
+            <div class="detail-header-score" style="text-align:center;">
+                <div class="overall-score-display ${statusClass}" style="margin: 0 auto 8px;">${c.overall_score || 0}%</div>
+                <span class="badge badge-${statusClass}"><i class="${statusIcon}"></i> ${c.status || 'Not analyzed'}</span>
+            </div>
+        </div>
+
+        ${safeList(c.decision_reasons).length ? `
+        <div class="detail-section">
+            <h5>Decision Rationale</h5>
+            <ul class="decision-list">
+                ${safeList(c.decision_reasons).map(r => `<li>${safeHtml(r)}</li>`).join('')}
+            </ul>
+        </div>
+        ` : ''}
+
+        <div class="detail-section">
+            <h5>Score Breakdown</h5>
+            <div class="score-breakdown-grid">
+                <div class="score-item">
+                    <div class="score-label">Skills Match</div>
+                    <div class="score-bar-small">
+                        <div class="score-fill-small" style="width:${c.skill_score || 0}%;background:#2563eb;"></div>
+                        <span class="score-text-small">${c.skill_score || 0}%</span>
+                    </div>
+                </div>
+                <div class="score-item">
+                    <div class="score-label">Experience</div>
+                    <div class="score-bar-small">
+                        <div class="score-fill-small" style="width:${c.experience_score || 0}%;background:#16a34a;"></div>
+                        <span class="score-text-small">${c.experience_score || 0}%</span>
+                    </div>
+                </div>
+                <div class="score-item">
+                    <div class="score-label">Education</div>
+                    <div class="score-bar-small">
+                        <div class="score-fill-small" style="width:${c.education_score || 0}%;background:#f59e0b;"></div>
+                        <span class="score-text-small">${c.education_score || 0}%</span>
+                    </div>
+                </div>
+                <div class="score-item">
+                    <div class="score-label">Role Match</div>
+                    <div class="score-bar-small">
+                        <div class="score-fill-small" style="width:${c.role_score || 0}%;background:#8b5cf6;"></div>
+                        <span class="score-text-small">${c.role_score || 0}%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="detail-section">
+            <h5>Skills</h5>
+            <div class="skills-grid">
+                <div class="skills-column">
+                    <h6>Matched Skills</h6>
+                    <div class="skill-chips">
+                        ${safeList(c.matched_skills).length ? safeList(c.matched_skills).map(s => `<span class="skill-chip">${safeHtml(s)}</span>`).join('') : '<span class="text-muted">None matched</span>'}
+                    </div>
+                </div>
+                <div class="skills-column">
+                    <h6>Missing Skills</h6>
+                    <div class="skill-chips">
+                        ${safeList(c.missing_skills).length ? safeList(c.missing_skills).map(s => `<span class="skill-chip missing">${safeHtml(s)}</span>`).join('') : '<span class="text-muted">None missing</span>'}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="detail-section">
+            <h5>Strengths & Weaknesses</h5>
+            <div class="sw-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+                <div class="sw-column">
+                    <h6><i class="bi bi-star-fill text-warning"></i> Strengths</h6>
+                    <ul class="sw-list strengths">
+                        ${safeList(c.strengths).length ? safeList(c.strengths).map(s => `<li>${safeHtml(s)}</li>`).join('') : '<li class="text-muted">No strengths identified</li>'}
+                    </ul>
+                </div>
+                <div class="sw-column">
+                    <h6><i class="bi bi-exclamation-triangle-fill text-danger"></i> Weaknesses</h6>
+                    <ul class="sw-list weaknesses">
+                        ${safeList(c.weaknesses).length ? safeList(c.weaknesses).map(w => `<li>${safeHtml(w)}</li>`).join('') : '<li class="text-muted">No weaknesses identified</li>'}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        ${c.summary ? `
+        <div class="detail-section">
+            <h5>Recommendation</h5>
+            <div class="recommendation-box ${statusClass}" style="padding:12px 16px;border-radius:8px;background:${statusClass === 'success' ? '#dcfce7' : '#fee2e2'};color:${statusClass === 'success' ? '#16a34a' : '#dc2626'};border:1px solid ${statusClass === 'success' ? '#16a34a' : '#dc2626'};">
+                <i class="${statusIcon}"></i> ${safeHtml(c.summary)}
+            </div>
+        </div>
+        ` : ''}
+
+        ${c.transparent_explanation ? `
+        <div class="detail-section">
+            <button class="btn btn-sm btn-outline-secondary" onclick="var r=this.nextElementSibling;r.style.display=r.style.display==='none'?'block':'none';">
+                <i class="bi bi-file-text-fill"></i> View Full ATS Matching Report
+            </button>
+            <div class="transparent-report" style="display:none;margin-top:8px;">
+                <pre>${safeHtml(c.transparent_explanation)}</pre>
+            </div>
+        </div>
+        ` : ''}
+    `;
+}
+
+// Close details when clicking elsewhere (with proper event handling)
+document.addEventListener('click', function(e) {
+    // Only close if clicking outside detail panel AND not on a view button
+    const isInsidePanel = e.target.closest('.candidate-detail-panel');
+    const isViewButton = e.target.closest('.view-detail');
+    const isInsideDetailRow = e.target.closest('.detail-row');
+
+    if (!isViewButton && !isInsideDetailRow) {
+        // Check if click is outside the open detail row
+        const openRow = document.querySelector('.detail-row[style*="table-row"]');
+        if (openRow && !isInsidePanel) {
+            openRow.style.display = 'none';
+        }
+    }
+});
+</script>
+{% endblock %}
+

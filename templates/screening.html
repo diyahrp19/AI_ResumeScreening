@@ -1,0 +1,436 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page-container">
+    <div class="page-header">
+        <h1 class="page-title">
+            <i class="bi bi-file-earmark-text"></i> Resume Screening
+        </h1>
+        <p class="page-subtitle">Upload resumes, define the job description, then run the AI analysis — all in one place.</p>
+    </div>
+
+    <!-- 1. Upload Resumes Section -->
+    <section class="section-block" id="upload-section">
+        <h2 class="section-title">
+            <i class="bi bi-cloud-arrow-up-fill"></i> Upload Resumes
+        </h2>
+        <div class="card-body">
+            <form action="{{ url_for('screening.screening') }}" method="POST" enctype="multipart/form-data" id="uploadForm">
+                <input type="hidden" name="action" value="upload">
+                <div class="upload-zone" id="uploadZone">
+                    <i class="bi bi-cloud-upload-fill upload-icon"></i>
+                    <h4>Drag & drop resumes here, or click to browse</h4>
+                    <p class="text-muted">Supported formats: PDF, DOCX. Multiple files can be uploaded at once.</p>
+                    <input type="file" name="resumes" id="fileInput" multiple accept=".pdf,.docx" class="file-input" onchange="this.form.submit()">
+                    <label for="fileInput" class="btn btn-outline-primary browse-btn">
+                        <i class="bi bi-folder2-open"></i> Browse Files
+                    </label>
+                </div>
+            </form>
+            <div class="upload-hint">
+                <i class="bi bi-info-circle-fill"></i> Resumes are parsed automatically the moment they're uploaded.
+            </div>
+        </div>
+
+        <!-- Uploaded Candidates List -->
+        {% if candidates %}
+        <div class="candidates-list mt-4">
+            <h3 class="subsection-title">
+                <i class="bi bi-file-earmark-check"></i> Uploaded Resumes ({{ candidates|length }})
+            </h3>
+            <div class="table-responsive">
+                <table class="table candidate-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Skills</th>
+                            <th>Experience</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for c in candidates %}
+                        <tr>
+                            <td>
+                                <strong>{{ c.get('name', 'Unknown') }}</strong>
+                                <small class="d-block text-muted">{{ c.get('filename', '') }}</small>
+                            </td>
+                            <td>{{ c.get('email', 'N/A') }}</td>
+                            <td>{{ c.get('phone', 'N/A') }}</td>
+                            <td><span class="badge bg-info">{{ c.get('skills', [])|length }} skills</span></td>
+                            <td>{{ c.get('experience_years', 0) }} yrs</td>
+                            <td>
+                                <button class="btn btn-sm btn-outline-danger delete-candidate" data-id="{{ c.get('id', '') }}" title="Remove">
+                                    <i class="bi bi-trash3"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% endif %}
+    </section>
+
+    <!-- 2. Job Description Section -->
+    <section class="section-block" id="job-description-section">
+        <h2 class="section-title">
+            <i class="bi bi-card-text"></i> Enter Job Description
+        </h2>
+        <form action="{{ url_for('screening.screening') }}" method="POST" id="jobForm" onsubmit="return saveJobDescription(event)">
+            <input type="hidden" name="action" value="save_job">
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="title" class="form-label">Job Title <span class="text-danger">*</span></label>
+                        <input type="text" id="title" name="title" class="form-control jd-input" value="{{ job_description.get('title', '') }}" placeholder="e.g. Senior Software Engineer" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="department" class="form-label">Department</label>
+                        <input type="text" id="department" name="department" class="form-control jd-input" value="{{ job_description.get('department', '') }}" placeholder="e.g. Engineering">
+                    </div>
+                    <div class="form-group">
+                        <label for="location" class="form-label">Location</label>
+                        <input type="text" id="location" name="location" class="form-control jd-input" value="{{ job_description.get('location', '') }}" placeholder="e.g. Bangalore">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="experience_years" class="form-label">Required Experience (years)</label>
+                        <input type="number" id="experience_years" name="experience_years" class="form-control jd-input" value="{{ job_description.get('experience_years', 2.0) }}" min="0" max="40" step="0.5">
+                    </div>
+                    <div class="form-group">
+                        <label for="education_choice" class="form-label">Required Education</label>
+                        <select id="education_choice" name="education_choice" class="form-select jd-input" onchange="toggleEducationOther()">
+                            {% for opt in education_options %}
+                            <option value="{{ opt }}" {{ 'selected' if job_description.get('education_choice', 'Bachelor\'s Degree') == opt else '' }}>{{ opt }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group" id="educationOtherGroup" style="display: {{ 'block' if job_description.get('education_choice') == 'Other' else 'none' }}">
+                        <label for="education_other" class="form-label">Enter Education Qualification</label>
+                        <input type="text" id="education_other" name="education_other" class="form-control jd-input" value="{{ job_description.get('education_other', '') }}" placeholder="e.g. PG Diploma">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group mt-3">
+                <label for="skills" class="form-label">Required Skills <span class="text-danger">*</span> (comma-separated)</label>
+                <textarea id="skills" name="skills" class="form-control jd-input" rows="4" placeholder="e.g. python, sql, machine learning, aws">{{ job_description.get('skills', []) | join(', ') }}</textarea>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3" id="saveJobBtn">
+                <i class="bi bi-save-fill"></i> Save Job Description
+            </button>
+        </form>
+
+        <!-- Job Description Summary -->
+        <div id="jdSummaryContainer">
+        {% if job_description %}
+        <div class="jd-summary mt-4">
+            <h3 class="subsection-title">Current Job Description</h3>
+            <div class="jd-summary-grid">
+                <div class="jd-summary-item">
+                    <span class="jd-label">Title</span>
+                    <span class="jd-value" id="jdTitle">{{ job_description.get('title', '-') }}</span>
+                </div>
+                <div class="jd-summary-item">
+                    <span class="jd-label">Experience</span>
+                    <span class="jd-value" id="jdExperience">{{ job_description.get('experience_years', 0) }} yrs</span>
+                </div>
+                <div class="jd-summary-item">
+                    <span class="jd-label">Education</span>
+                    <span class="jd-value" id="jdEducation">{{ job_description.get('education', '-') }}</span>
+                </div>
+                <div class="jd-summary-item">
+                    <span class="jd-label">Department</span>
+                    <span class="jd-value" id="jdDepartment">{{ job_description.get('department', '-') }}</span>
+                </div>
+                <div class="jd-summary-item">
+                    <span class="jd-label">Location</span>
+                    <span class="jd-value" id="jdLocation">{{ job_description.get('location', '-') }}</span>
+                </div>
+            </div>
+            <div class="jd-skills-summary">
+                <span class="jd-label">Required Skills:</span>
+                <div class="skill-chips" id="jdSkillsContainer">
+                    {% for skill in job_description.get('skills', []) %}
+                    <span class="skill-chip">{{ skill }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        </div>
+    </section>
+
+    <!-- 3. Analyze Section -->
+    <section class="section-block" id="analyze-section">
+        <h2 class="section-title">
+            <i class="bi bi-robot"></i> Analyze Candidates
+        </h2>
+        <div class="analyze-card">
+            <div class="analyze-status">
+                {% if not job_description %}
+                <div class="status-warning"><i class="bi bi-exclamation-triangle-fill"></i> Save a Job Description above before analyzing.</div>
+                {% endif %}
+                {% if not candidates %}
+                <div class="status-warning"><i class="bi bi-exclamation-triangle-fill"></i> Upload at least one resume above before analyzing.</div>
+                {% endif %}
+            </div>
+            <div id="analyzeForm">
+                <button type="button" class="btn btn-primary btn-analyze" id="analyzeBtn" {{ 'disabled' if not job_description or not candidates else '' }}
+                        onclick="runAnalysis()">
+                    <i class="bi bi-rocket-takeoff-fill"></i> Analyze Resumes
+                </button>
+                <div id="analyzeProgress" style="display:none; margin-top: 16px;">
+                    <div class="d-flex align-items-center gap-2">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <span id="analyzeStatusText">🤖 AI is analyzing resumes... this may take a moment.</span>
+                    </div>
+                </div>
+            </div>
+            <p class="analyze-hint">
+                <i class="bi bi-info-circle-fill"></i>
+                Runs NLP extraction, rule-based inference, and expert-system scoring on all uploaded resumes.
+                <br>Results will appear in <strong>Candidate Results</strong>.
+            </p>
+        </div>
+    </section>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function toggleEducationOther() {
+    const select = document.getElementById('education_choice');
+    const otherGroup = document.getElementById('educationOtherGroup');
+    otherGroup.style.display = select.value === 'Other' ? 'block' : 'none';
+}
+
+/**
+ * Save Job Description via AJAX (no page reload).
+ * Prevents scroll-to-top issue.
+ */
+function saveJobDescription(event) {
+    event.preventDefault();
+
+    const form = document.getElementById('jobForm');
+    const formData = new FormData(form);
+    const btn = document.getElementById('saveJobBtn');
+
+    // Disable button and show loading state
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Saving...';
+
+    fetch('{{ url_for("screening.api_save_job") }}', {
+        method: 'POST',
+        body: formData,
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            showFlash(data.error, 'error');
+        } else if (data.success) {
+            // Update the job description summary dynamically
+            updateJdSummary(data.job);
+            showFlash(data.message, 'success');
+        }
+    })
+    .catch(error => {
+        showFlash('An error occurred while saving the job description.', 'error');
+        console.error('Save job error:', error);
+    })
+    .finally(() => {
+        // Re-enable button
+        btn.disabled = false;
+        btn.innerHTML = '<i class="bi bi-save-fill"></i> Save Job Description';
+    });
+
+    return false;
+}
+
+/**
+ * Update the Job Description summary section dynamically.
+ */
+function updateJdSummary(job) {
+    const container = document.getElementById('jdSummaryContainer');
+
+    // Build skills chips HTML
+    let skillsHtml = '';
+    if (job.skills && job.skills.length > 0) {
+        skillsHtml = job.skills.map(s => `<span class="skill-chip">${escapeHtml(s)}</span>`).join('');
+    } else {
+        skillsHtml = '<span class="text-muted">_None_</span>';
+    }
+
+    const summaryHtml = `
+        <div class="jd-summary mt-4">
+            <h3 class="subsection-title">Current Job Description</h3>
+            <div class="jd-summary-grid">
+                <div class="jd-summary-item">
+                    <span class="jd-label">Title</span>
+                    <span class="jd-value">${escapeHtml(job.title || '-')}</span>
+                </div>
+                <div class="jd-summary-item">
+                    <span class="jd-label">Experience</span>
+                    <span class="jd-value">${escapeHtml(job.experience_years || 0)} yrs</span>
+                </div>
+                <div class="jd-summary-item">
+                    <span class="jd-label">Education</span>
+                    <span class="jd-value">${escapeHtml(job.education || '-')}</span>
+                </div>
+                <div class="jd-summary-item">
+                    <span class="jd-label">Department</span>
+                    <span class="jd-value">${escapeHtml(job.department || '-')}</span>
+                </div>
+                <div class="jd-summary-item">
+                    <span class="jd-label">Location</span>
+                    <span class="jd-value">${escapeHtml(job.location || '-')}</span>
+                </div>
+            </div>
+            <div class="jd-skills-summary">
+                <span class="jd-label">Required Skills:</span>
+                <div class="skill-chips">
+                    ${skillsHtml}
+                </div>
+            </div>
+        </div>
+    `;
+
+    container.innerHTML = summaryHtml;
+
+    // Enable the analyze button if it was disabled
+    const analyzeBtn = document.getElementById('analyzeBtn');
+    if (analyzeBtn) {
+        analyzeBtn.disabled = false;
+    }
+}
+
+/**
+ * Run analysis via AJAX (no page reload).
+ * Prevents scroll-to-top issue.
+ */
+function runAnalysis() {
+    const btn = document.getElementById('analyzeBtn');
+    const progress = document.getElementById('analyzeProgress');
+    const statusText = document.getElementById('analyzeStatusText');
+
+    // Show progress, disable button
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Analyzing...';
+    progress.style.display = 'block';
+    statusText.textContent = '🤖 AI is analyzing resumes... this may take a moment.';
+
+    fetch('{{ url_for("screening.api_analyze") }}', {
+        method: 'POST',
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            showFlash(data.error, 'error');
+            statusText.textContent = '❌ ' + data.error;
+        } else if (data.success) {
+            statusText.textContent = '✅ ' + data.message;
+            showFlash(data.message, 'success');
+
+            // Redirect to candidates page after a short delay
+            setTimeout(() => {
+                window.location.href = '{{ url_for("candidates.candidates") }}';
+            }, 1500);
+        }
+    })
+    .catch(error => {
+        showFlash('An error occurred during analysis.', 'error');
+        statusText.textContent = '❌ An error occurred during analysis.';
+        console.error('Analysis error:', error);
+    })
+    .finally(() => {
+        // Re-enable button after a delay (in case user wants to re-run)
+        setTimeout(() => {
+            btn.disabled = false;
+            btn.innerHTML = '<i class="bi bi-rocket-takeoff-fill"></i> Analyze Resumes';
+        }, 2000);
+    });
+}
+
+/**
+ * Show a flash message on the page without reloading.
+ */
+function showFlash(message, type) {
+    // Check if flash container exists, if not create one
+    let container = document.querySelector('.flash-messages');
+    if (!container) {
+        container = document.createElement('div');
+        container.className = 'flash-messages';
+        const pageContainer = document.querySelector('.page-container');
+        if (pageContainer) {
+            pageContainer.prepend(container);
+        }
+    }
+
+    const alert = document.createElement('div');
+    const typeClass = type === 'error' ? 'danger' : type;
+    alert.className = `alert alert-${typeClass} alert-dismissible fade show`;
+    alert.innerHTML = `
+        ${message}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    `;
+    container.appendChild(alert);
+
+    // Auto-dismiss after 5 seconds
+    setTimeout(() => {
+        alert.classList.remove('show');
+        setTimeout(() => alert.remove(), 300);
+    }, 5000);
+}
+
+/**
+ * Simple HTML escaping to prevent XSS.
+ */
+function escapeHtml(text) {
+    if (!text) return '';
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+// File upload click handler
+document.addEventListener('DOMContentLoaded', function() {
+    const uploadZone = document.getElementById('uploadZone');
+    const fileInput = document.getElementById('fileInput');
+
+    uploadZone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        uploadZone.classList.add('drag-over');
+    });
+
+    uploadZone.addEventListener('dragleave', () => {
+        uploadZone.classList.remove('drag-over');
+    });
+
+    uploadZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        uploadZone.classList.remove('drag-over');
+        if (e.dataTransfer.files.length > 0) {
+            fileInput.files = e.dataTransfer.files;
+            document.getElementById('uploadForm').submit();
+        }
+    });
+
+    // Delete candidate
+    document.querySelectorAll('.delete-candidate').forEach(btn => {
+        btn.addEventListener('click', function() {
+            if (confirm('Remove this candidate from the list?')) {
+                const id = this.dataset.id;
+                fetch('{{ url_for("screening.screening") }}/delete/' + id, { method: 'POST' })
+                    .then(() => location.reload());
+            }
+        });
+    });
+});
+</script>
+{% endblock %}
+

@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page-container">
+    <div class="page-header">
+        <h1 class="page-title">
+            <i class="bi bi-file-earmark-bar-graph"></i> Reports
+        </h1>
+        <p class="page-subtitle">Export candidate screening results for sharing or record-keeping.</p>
+    </div>
+
+    {% if has_candidates %}
+    <!-- Report Contents Info -->
+    <section class="section-block">
+        <div class="report-info">
+            <h5><i class="bi bi-info-circle-fill text-primary"></i> Report Contents</h5>
+            <ul class="report-info-list">
+                <li>Candidate contact &amp; profile information</li>
+                <li>Extracted skills, education, certifications, and projects</li>
+                <li>Overall match score and sub-scores</li>
+                <li>Recommendation, missing skills, strengths, and weaknesses</li>
+            </ul>
+        </div>
+
+        <!-- Download Cards -->
+        <div class="report-cards-grid">
+            <div class="report-card">
+                <div class="report-card-icon pdf">
+                    <i class="bi bi-filetype-pdf"></i>
+                </div>
+                <h3 class="report-card-title">PDF Report</h3>
+                <p class="report-card-desc">Full formatted report with per-candidate explanations.</p>
+                <a href="{{ url_for('reports.download_pdf') }}" class="btn btn-primary btn-download">
+                    <i class="bi bi-download"></i> Download PDF
+                </a>
+            </div>
+
+            <div class="report-card">
+                <div class="report-card-icon excel">
+                    <i class="bi bi-file-earmark-excel"></i>
+                </div>
+                <h3 class="report-card-title">Excel Workbook</h3>
+                <p class="report-card-desc">Ranking sheet + job description sheet for spreadsheet analysis.</p>
+                <a href="{{ url_for('reports.download_excel') }}" class="btn btn-primary btn-download">
+                    <i class="bi bi-download"></i> Download Excel
+                </a>
+            </div>
+
+</div>
+
+        <!-- Report History -->
+        {% if report_history %}
+        <div class="report-history mt-4">
+            <h5><i class="bi bi-clock-history"></i> Recently Generated Reports</h5>
+            <div class="table-responsive">
+                <table class="table history-table">
+                    <thead>
+                        <tr>
+                            <th>Format</th>
+                            <th>Job Title</th>
+                            <th>Timestamp</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% set icons = {'PDF': 'bi-filetype-pdf text-danger', 'Excel': 'bi-file-earmark-excel text-success', 'CSV': 'bi-filetype-csv text-primary'} %}
+                        {% for report in report_history|reverse %}
+                        <tr>
+                            <td><i class="{{ icons.get(report.get('format', ''), 'bi-file-earmark') }}"></i> {{ report.get('format', '') }}</td>
+                            <td>{{ report.get('job_title', 'Untitled') }}</td>
+                            <td>{{ report.get('timestamp', '') }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% endif %}
+    </section>
+    {% else %}
+    <div class="empty-state main-empty">
+        <i class="bi bi-inbox-fill"></i>
+        <h3>No Analyzed Candidates Yet</h3>
+        <p>Go to <strong>Resume Screening</strong> to upload resumes, set a job description, and click Analyze Resumes. Then come back here to download reports.</p>
+        <a href="{{ url_for('screening.screening') }}" class="btn btn-primary">
+            <i class="bi bi-file-earmark-text"></i> Go to Resume Screening
+        </a>
+    </div>
+{% endif %}
+</div>
+{% endblock %}
+

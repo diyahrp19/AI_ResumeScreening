@@ -1,0 +1,514 @@
+[2026-07-25 14:35:40] INFO [app] Logging initialized.
+[2026-07-25 14:35:40] INFO [app] Database initialized successfully.
+[2026-07-25 14:35:40] INFO [app] Auth database initialized successfully.
+[2026-07-25 14:35:51] INFO [app] spaCy NER model loaded successfully.
+[2026-07-25 14:35:51] INFO [werkzeug] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[2026-07-25 14:35:51] INFO [werkzeug] [33mPress CTRL+C to quit[0m
+[2026-07-25 14:35:51] INFO [werkzeug]  * Restarting with watchdog (windowsapi)
+[2026-07-25 14:35:51] INFO [app] Logging initialized.
+[2026-07-25 14:35:51] INFO [app] Database initialized successfully.
+[2026-07-25 14:35:51] INFO [app] Auth database initialized successfully.
+[2026-07-25 14:36:00] INFO [app] spaCy NER model loaded successfully.
+[2026-07-25 14:36:00] WARNING [werkzeug]  * Debugger is active!
+[2026-07-25 14:36:00] INFO [werkzeug]  * Debugger PIN: 559-244-508
+[2026-07-25 14:36:00] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:36:00] "GET / HTTP/1.1" 200 -
+[2026-07-25 14:36:00] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:36:00] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+[2026-07-25 14:36:00] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:36:00] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+[2026-07-25 14:36:11] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:36:11] "POST /auth/login HTTP/1.1" 200 -
+[2026-07-25 14:36:11] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:36:11] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+[2026-07-25 14:36:11] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:36:11] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+[2026-07-25 14:36:25] INFO [routes.auth_routes] Loaded 3 candidates for user 1
+[2026-07-25 14:36:25] INFO [routes.auth_routes] Loaded job description for user 1
+[2026-07-25 14:36:25] INFO [routes.auth_routes] Loaded 10 activity logs for user 1
+[2026-07-25 14:36:25] INFO [routes.auth_routes] Loaded 0 report history entries for user 1
+[2026-07-25 14:36:25] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:36:25] "[32mPOST /auth/login HTTP/1.1[0m" 302 -
+[2026-07-25 14:36:25] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:36:25] "GET /dashboard HTTP/1.1" 200 -
+[2026-07-25 14:36:25] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:36:25] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+[2026-07-25 14:36:25] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:36:25] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+[2026-07-25 14:36:25] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:36:25] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:36:30] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:36:30] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:36:30] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:36:30] "GET /screening/ HTTP/1.1" 200 -
+[2026-07-25 14:36:30] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:36:30] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+[2026-07-25 14:36:30] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:36:30] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+[2026-07-25 14:36:39] INFO [routes.screening_routes] Upload complete: 1 added, 0 skipped, 0 failed
+[2026-07-25 14:36:39] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:36:39] "[32mPOST /screening/ HTTP/1.1[0m" 302 -
+[2026-07-25 14:36:39] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:36:39] "GET /screening/ HTTP/1.1" 200 -
+[2026-07-25 14:36:39] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:36:39] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+[2026-07-25 14:36:39] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:36:39] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+[2026-07-25 14:36:41] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:36:41] "GET /dashboard HTTP/1.1" 200 -
+[2026-07-25 14:36:41] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:36:41] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+[2026-07-25 14:36:41] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:36:41] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+[2026-07-25 14:36:41] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:36:41] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:36:47] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:36:47] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:36:52] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:36:52] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:36:57] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:36:57] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:37:02] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:37:02] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:37:07] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:37:07] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:37:12] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:37:12] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:37:17] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:37:17] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:37:22] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:37:22] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:37:27] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:37:27] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:37:32] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:37:32] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:37:37] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:37:37] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:37:42] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:37:42] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:37:47] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:37:47] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:37:52] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:37:52] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:37:57] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:37:57] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:38:02] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:38:02] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:38:07] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:38:07] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:38:12] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:38:12] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:38:17] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:38:17] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:38:22] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:38:22] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:38:27] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:38:27] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:38:32] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:38:32] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:38:37] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:38:37] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:38:45] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:38:45] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:38:47] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:38:47] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:38:52] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:38:52] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:38:57] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:38:57] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:39:02] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:39:02] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:39:07] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:39:07] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:39:12] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:39:12] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:39:17] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:39:17] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:39:22] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:39:22] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:39:27] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:39:27] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:39:32] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:39:32] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:39:37] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:39:37] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:39:42] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:39:42] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:39:47] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:39:47] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:39:52] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:39:52] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:39:57] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:39:57] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:40:02] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:40:02] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:40:07] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:40:07] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:40:12] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:40:12] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:40:17] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:40:17] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:40:22] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:40:22] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:40:27] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:40:27] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:40:32] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:40:32] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:40:37] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:40:37] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:40:42] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:40:42] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:40:47] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:40:47] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:40:52] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:40:52] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:40:57] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:40:57] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:41:02] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:41:02] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:41:07] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:41:07] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:41:12] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:41:12] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:41:18] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:41:18] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:41:25] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:41:25] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:41:27] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:41:27] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:41:32] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:41:32] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:41:37] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:41:37] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:41:42] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:41:42] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:41:47] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:41:47] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:41:53] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:41:53] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:41:58] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:41:58] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:42:03] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:42:03] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:42:08] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:42:08] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:42:13] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:42:13] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:42:18] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:42:18] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:42:23] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:42:23] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:42:28] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:42:28] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:42:33] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:42:33] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:42:38] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:42:38] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:42:45] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:42:45] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:42:48] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:42:48] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:42:53] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:42:53] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:42:58] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:42:58] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:43:03] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:43:03] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:43:03] INFO [werkzeug]  * Detected change in 'C:\\Users\\Hiren Patel\\Downloads\\AI_Resume_Screening2\\config.py', reloading
+[2026-07-25 14:43:05] INFO [werkzeug]  * Restarting with watchdog (windowsapi)
+[2026-07-25 14:43:05] INFO [app] Logging initialized.
+[2026-07-25 14:43:05] INFO [app] Database initialized successfully.
+[2026-07-25 14:43:05] INFO [app] Auth database initialized successfully.
+[2026-07-25 14:43:14] INFO [app] spaCy NER model loaded successfully.
+[2026-07-25 14:43:14] WARNING [werkzeug]  * Debugger is active!
+[2026-07-25 14:43:14] INFO [werkzeug]  * Debugger PIN: 559-244-508
+[2026-07-25 14:43:14] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:43:14] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:43:14] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:43:14] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:43:18] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:43:18] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:43:23] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:43:23] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:43:28] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:43:28] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:43:33] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:43:33] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:43:38] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:43:38] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:43:43] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:43:43] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:43:48] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:43:48] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:43:53] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:43:53] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:44:03] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:44:03] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:44:03] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:44:03] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:44:08] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:44:08] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:44:13] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:44:13] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:44:18] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:44:18] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:44:23] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:44:23] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:44:28] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:44:28] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:44:33] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:44:33] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:44:38] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:44:38] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:44:43] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:44:43] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:44:48] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:44:48] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:44:53] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:44:53] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:44:58] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:44:58] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:45:03] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:45:03] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:45:08] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:45:08] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:45:13] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:45:13] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:45:18] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:45:18] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:45:23] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:45:23] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:45:28] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:45:28] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:45:33] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:45:33] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:45:38] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:45:38] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:45:42] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:45:42] "GET /dashboard HTTP/1.1" 200 -
+[2026-07-25 14:45:42] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:45:42] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+[2026-07-25 14:45:42] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:45:42] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+[2026-07-25 14:45:42] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:45:42] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:45:47] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:45:47] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:45:48] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:45:48] "GET /dashboard HTTP/1.1" 200 -
+[2026-07-25 14:45:48] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:45:48] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+[2026-07-25 14:45:48] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:45:48] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+[2026-07-25 14:45:48] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:45:48] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:45:53] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:45:53] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:45:58] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:45:58] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:46:03] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:46:03] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:46:08] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:46:08] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:46:13] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:46:13] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:46:19] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:46:19] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:46:23] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:46:23] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:46:29] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:46:29] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:46:34] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:46:34] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:46:39] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:46:39] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:46:44] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:46:44] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:46:49] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:46:49] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:46:54] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:46:54] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:46:59] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:46:59] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:47:04] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:47:04] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:47:09] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:47:09] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:47:15] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:47:15] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:47:19] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:47:19] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:47:24] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:47:24] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:47:26] INFO [app] Logging initialized.
+[2026-07-25 14:47:26] INFO [app] Database initialized successfully.
+[2026-07-25 14:47:26] INFO [app] Auth database initialized successfully.
+[2026-07-25 14:47:26] INFO [werkzeug]  * Detected change in 'C:\\Users\\Hiren Patel\\anaconda3\\Lib\\site-packages\\flask_session\\filesystem\\filesystem.py', reloading
+[2026-07-25 14:47:28] INFO [werkzeug]  * Restarting with watchdog (windowsapi)
+[2026-07-25 14:47:29] INFO [app] Logging initialized.
+[2026-07-25 14:47:29] INFO [app] Database initialized successfully.
+[2026-07-25 14:47:29] INFO [app] Auth database initialized successfully.
+[2026-07-25 14:47:37] INFO [app] spaCy NER model loaded successfully.
+[2026-07-25 14:47:39] INFO [app] spaCy NER model loaded successfully.
+[2026-07-25 14:47:39] WARNING [werkzeug]  * Debugger is active!
+[2026-07-25 14:47:39] INFO [werkzeug]  * Debugger PIN: 559-244-508
+[2026-07-25 14:47:39] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:47:39] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:47:39] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:47:39] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:47:40] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:47:40] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:47:45] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:47:45] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:47:50] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:47:50] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:47:55] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:47:55] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:48:00] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:48:00] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:48:08] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:48:08] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:48:10] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:48:10] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:48:15] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:48:15] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:48:20] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:48:20] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:48:25] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:48:25] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:48:30] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:48:30] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:48:35] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:48:35] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:48:40] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:48:40] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:48:45] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:48:45] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:48:50] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:48:50] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:48:55] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:48:55] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:49:00] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:49:00] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:49:05] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:49:05] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:49:10] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:49:10] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:49:11] INFO [werkzeug]  * Detected change in 'C:\\Users\\Hiren Patel\\anaconda3\\Lib\\site-packages\\flask_session\\__init__.py', reloading
+[2026-07-25 14:49:12] INFO [werkzeug]  * Restarting with watchdog (windowsapi)
+[2026-07-25 14:49:13] INFO [app] Logging initialized.
+[2026-07-25 14:49:13] INFO [app] Database initialized successfully.
+[2026-07-25 14:49:13] INFO [app] Auth database initialized successfully.
+[2026-07-25 14:49:22] INFO [app] spaCy NER model loaded successfully.
+[2026-07-25 14:49:22] WARNING [werkzeug]  * Debugger is active!
+[2026-07-25 14:49:22] INFO [werkzeug]  * Debugger PIN: 559-244-508
+[2026-07-25 14:49:22] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:49:22] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:49:22] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:49:22] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:49:25] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:49:25] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-25 14:49:28] INFO [werkzeug]  * Detected change in 'C:\\Users\\Hiren Patel\\Downloads\\AI_Resume_Screening2\\config.py', reloading
+[2026-07-25 14:49:30] INFO [werkzeug]  * Restarting with watchdog (windowsapi)
+[2026-07-25 14:49:31] INFO [app] Logging initialized.
+[2026-07-25 14:49:31] INFO [app] Database initialized successfully.
+[2026-07-25 14:49:31] INFO [app] Auth database initialized successfully.
+[2026-07-25 14:49:42] INFO [app] Logging initialized.
+[2026-07-25 14:49:42] INFO [app] Database initialized successfully.
+[2026-07-25 14:49:42] INFO [app] Auth database initialized successfully.
+[2026-07-25 14:49:43] INFO [app] spaCy NER model loaded successfully.
+[2026-07-25 14:49:43] WARNING [werkzeug]  * Debugger is active!
+[2026-07-25 14:49:43] INFO [werkzeug]  * Debugger PIN: 559-244-508
+[2026-07-25 14:49:43] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:49:43] "[31m[1mGET /api/kpis HTTP/1.1[0m" 401 -
+[2026-07-25 14:49:43] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:49:43] "[31m[1mGET /api/kpis HTTP/1.1[0m" 401 -
+[2026-07-25 14:49:43] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:49:43] "[31m[1mGET /api/kpis HTTP/1.1[0m" 401 -
+[2026-07-25 14:49:45] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:49:45] "[31m[1mGET /api/kpis HTTP/1.1[0m" 401 -
+[2026-07-25 14:49:53] INFO [app] spaCy NER model loaded successfully.
+[2026-07-25 14:49:53] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:49:53] "[31m[1mGET /api/kpis HTTP/1.1[0m" 401 -
+[2026-07-25 14:49:54] INFO [app] Logging initialized.
+[2026-07-25 14:49:54] INFO [app] Database initialized successfully.
+[2026-07-25 14:49:54] INFO [app] Auth database initialized successfully.
+[2026-07-25 14:49:55] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:49:55] "[31m[1mGET /api/kpis HTTP/1.1[0m" 401 -
+[2026-07-25 14:50:00] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:50:00] "[31m[1mGET /api/kpis HTTP/1.1[0m" 401 -
+[2026-07-25 14:50:05] INFO [app] spaCy NER model loaded successfully.
+[2026-07-25 14:50:05] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:50:05] "[31m[1mGET /api/kpis HTTP/1.1[0m" 401 -
+[2026-07-25 14:50:10] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:50:10] "[31m[1mGET /api/kpis HTTP/1.1[0m" 401 -
+[2026-07-25 14:50:15] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:50:15] "[31m[1mGET /api/kpis HTTP/1.1[0m" 401 -
+[2026-07-25 14:50:20] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:50:20] "[31m[1mGET /api/kpis HTTP/1.1[0m" 401 -
+[2026-07-25 14:50:25] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:50:25] "[31m[1mGET /api/kpis HTTP/1.1[0m" 401 -
+[2026-07-25 14:50:30] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:50:30] "[31m[1mGET /api/kpis HTTP/1.1[0m" 401 -
+[2026-07-25 14:50:35] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:50:35] "[31m[1mGET /api/kpis HTTP/1.1[0m" 401 -
+[2026-07-25 14:50:40] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:50:40] "[31m[1mGET /api/kpis HTTP/1.1[0m" 401 -
+[2026-07-25 14:50:45] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:50:45] "[31m[1mGET /api/kpis HTTP/1.1[0m" 401 -
+[2026-07-25 14:50:57] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:50:57] "[31m[1mGET /api/kpis HTTP/1.1[0m" 401 -
+[2026-07-25 14:51:06] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:51:06] "[31m[1mGET /api/kpis HTTP/1.1[0m" 401 -
+[2026-07-25 14:51:11] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:51:11] "[31m[1mGET /api/kpis HTTP/1.1[0m" 401 -
+[2026-07-25 14:51:16] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:51:16] "[31m[1mGET /api/kpis HTTP/1.1[0m" 401 -
+[2026-07-25 14:51:21] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:51:21] "[31m[1mGET /api/kpis HTTP/1.1[0m" 401 -
+[2026-07-25 14:51:26] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:51:26] "[31m[1mGET /api/kpis HTTP/1.1[0m" 401 -
+[2026-07-25 14:51:31] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:51:31] "[31m[1mGET /api/kpis HTTP/1.1[0m" 401 -
+[2026-07-25 14:51:45] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:51:45] "[31m[1mGET /api/kpis HTTP/1.1[0m" 401 -
+[2026-07-25 14:51:50] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:51:50] "[31m[1mGET /api/kpis HTTP/1.1[0m" 401 -
+[2026-07-25 14:51:55] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:51:55] "[31m[1mGET /api/kpis HTTP/1.1[0m" 401 -
+[2026-07-25 14:52:00] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:52:00] "[31m[1mGET /api/kpis HTTP/1.1[0m" 401 -
+[2026-07-25 14:52:12] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:52:12] "[31m[1mGET /api/kpis HTTP/1.1[0m" 401 -
+[2026-07-25 14:52:17] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:52:17] "[31m[1mGET /api/kpis HTTP/1.1[0m" 401 -
+[2026-07-25 14:52:22] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:52:22] "[31m[1mGET /api/kpis HTTP/1.1[0m" 401 -
+[2026-07-25 14:52:27] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:52:27] "[31m[1mGET /api/kpis HTTP/1.1[0m" 401 -
+[2026-07-25 14:52:32] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:52:32] "[31m[1mGET /api/kpis HTTP/1.1[0m" 401 -
+[2026-07-25 14:52:37] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:52:37] "[31m[1mGET /api/kpis HTTP/1.1[0m" 401 -
+[2026-07-25 14:52:38] INFO [app] Logging initialized.
+[2026-07-25 14:52:38] INFO [app] Database initialized successfully.
+[2026-07-25 14:52:38] INFO [app] Auth database initialized successfully.
+[2026-07-25 14:52:42] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:52:42] "[31m[1mGET /api/kpis HTTP/1.1[0m" 401 -
+[2026-07-25 14:52:47] INFO [app] spaCy NER model loaded successfully.
+[2026-07-25 14:52:52] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:52:52] "[31m[1mGET /api/kpis HTTP/1.1[0m" 401 -
+[2026-07-25 14:52:57] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:52:57] "[31m[1mGET /api/kpis HTTP/1.1[0m" 401 -
+[2026-07-25 14:53:02] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:53:02] "[31m[1mGET /api/kpis HTTP/1.1[0m" 401 -
+[2026-07-25 14:53:07] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:53:07] "[31m[1mGET /api/kpis HTTP/1.1[0m" 401 -
+[2026-07-25 14:53:17] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:53:17] "[31m[1mGET /api/kpis HTTP/1.1[0m" 401 -
+[2026-07-25 14:53:22] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:53:22] "[31m[1mGET /api/kpis HTTP/1.1[0m" 401 -
+[2026-07-25 14:53:27] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:53:27] "[31m[1mGET /api/kpis HTTP/1.1[0m" 401 -
+[2026-07-25 14:53:32] INFO [werkzeug] 127.0.0.1 - - [25/Jul/2026 14:53:32] "[31m[1mGET /api/kpis HTTP/1.1[0m" 401 -
+[2026-07-25 14:55:00] INFO [app] Logging initialized.
+[2026-07-25 14:55:00] INFO [app] Database initialized successfully.
+[2026-07-25 14:55:00] INFO [app] Auth database initialized successfully.
+[2026-07-25 14:56:30] INFO [app] Logging initialized.
+[2026-07-25 14:56:30] INFO [app] Database initialized successfully.
+[2026-07-25 14:56:30] INFO [app] Auth database initialized successfully.
+[2026-07-25 14:56:38] INFO [app] spaCy NER model loaded successfully.
+[2026-07-25 14:56:50] INFO [app] Logging initialized.
+[2026-07-25 14:56:50] INFO [app] Database initialized successfully.
+[2026-07-25 14:56:50] INFO [app] Auth database initialized successfully.
+[2026-07-25 14:57:01] INFO [app] spaCy NER model loaded successfully.
+[2026-07-25 14:57:15] INFO [app] Logging initialized.
+[2026-07-25 14:57:15] INFO [app] Database initialized successfully.
+[2026-07-25 14:57:15] INFO [app] Auth database initialized successfully.
+[2026-07-25 14:57:22] INFO [app] spaCy NER model loaded successfully.
+[2026-07-28 11:49:27] INFO [app] Logging initialized.
+[2026-07-28 11:49:27] INFO [app] Database initialized successfully.
+[2026-07-28 11:49:27] INFO [app] Auth database initialized successfully.
+[2026-07-28 11:49:37] INFO [app] spaCy NER model loaded successfully.
+[2026-07-28 11:49:37] INFO [werkzeug] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[2026-07-28 11:49:37] INFO [werkzeug] [33mPress CTRL+C to quit[0m
+[2026-07-28 11:49:37] INFO [werkzeug]  * Restarting with watchdog (windowsapi)
+[2026-07-28 11:49:38] INFO [app] Logging initialized.
+[2026-07-28 11:49:38] INFO [app] Database initialized successfully.
+[2026-07-28 11:49:38] INFO [app] Auth database initialized successfully.
+[2026-07-28 11:49:46] INFO [app] spaCy NER model loaded successfully.
+[2026-07-28 11:49:46] WARNING [werkzeug]  * Debugger is active!
+[2026-07-28 11:49:46] INFO [werkzeug]  * Debugger PIN: 298-363-501
+[2026-07-28 11:49:46] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:49:46] "GET / HTTP/1.1" 200 -
+[2026-07-28 11:49:46] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:49:46] "GET /static/css/style.css HTTP/1.1" 200 -
+[2026-07-28 11:49:46] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:49:46] "GET /static/js/app.js HTTP/1.1" 200 -
+[2026-07-28 11:49:59] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:49:59] "GET /dashboard HTTP/1.1" 200 -
+[2026-07-28 11:49:59] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:49:59] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+[2026-07-28 11:49:59] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:49:59] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+[2026-07-28 11:50:03] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:50:03] "GET / HTTP/1.1" 200 -
+[2026-07-28 11:50:03] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:50:03] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+[2026-07-28 11:50:03] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:50:03] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+[2026-07-28 11:50:17] INFO [routes.auth_routes] Loaded 3 candidates for user 1
+[2026-07-28 11:50:17] INFO [routes.auth_routes] Loaded job description for user 1
+[2026-07-28 11:50:17] INFO [routes.auth_routes] Loaded 11 activity logs for user 1
+[2026-07-28 11:50:17] INFO [routes.auth_routes] Loaded 0 report history entries for user 1
+[2026-07-28 11:50:17] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:50:17] "[32mPOST /auth/login HTTP/1.1[0m" 302 -
+[2026-07-28 11:50:18] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:50:18] "GET /dashboard HTTP/1.1" 200 -
+[2026-07-28 11:50:18] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:50:18] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+[2026-07-28 11:50:18] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:50:18] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+[2026-07-28 11:50:18] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:50:18] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:50:23] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:50:23] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:50:28] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:50:28] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:50:30] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:50:30] "GET /reports/ HTTP/1.1" 200 -
+[2026-07-28 11:50:30] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:50:30] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+[2026-07-28 11:50:30] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:50:30] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+[2026-07-28 11:50:34] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:50:34] "GET /screening/ HTTP/1.1" 200 -
+[2026-07-28 11:50:34] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:50:34] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+[2026-07-28 11:50:34] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:50:34] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+[2026-07-28 11:50:37] INFO [database.models] All data cleared for user_id=1
+[2026-07-28 11:50:37] INFO [routes.reports_routes] All data cleared for user 1 (diya)
+[2026-07-28 11:50:37] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:50:37] "[32mPOST /reports/clear-data HTTP/1.1[0m" 302 -
+[2026-07-28 11:50:37] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:50:37] "GET /screening/ HTTP/1.1" 200 -
+[2026-07-28 11:50:37] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:50:37] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+[2026-07-28 11:50:37] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:50:37] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+[2026-07-28 11:50:46] INFO [routes.screening_routes] Upload complete: 4 added, 0 skipped, 0 failed
+[2026-07-28 11:50:46] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:50:46] "[32mPOST /screening/ HTTP/1.1[0m" 302 -
+[2026-07-28 11:50:46] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:50:46] "GET /screening/ HTTP/1.1" 200 -
+[2026-07-28 11:50:46] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:50:46] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+[2026-07-28 11:50:46] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:50:46] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+[2026-07-28 11:51:23] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:51:23] "POST /screening/api/save_job HTTP/1.1" 200 -
+[2026-07-28 11:51:27] INFO [routes.screening_routes] Starting AJAX analysis: 4 candidate(s) against job 'Python Developer'
+[2026-07-28 11:51:27] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:51:27] "POST /screening/api/analyze HTTP/1.1" 200 -
+[2026-07-28 11:51:29] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:51:29] "GET /candidates/ HTTP/1.1" 200 -
+[2026-07-28 11:51:29] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:51:29] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+[2026-07-28 11:51:29] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:51:29] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+[2026-07-28 11:51:32] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:51:32] "GET /candidates/api/ranking HTTP/1.1" 200 -
+[2026-07-28 11:51:34] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:51:34] "GET /candidates/api/ranking HTTP/1.1" 200 -
+[2026-07-28 11:51:35] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:51:35] "GET /candidates/api/ranking HTTP/1.1" 200 -
+[2026-07-28 11:51:37] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:51:37] "GET /candidates/api/ranking HTTP/1.1" 200 -
+[2026-07-28 11:51:42] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:51:42] "GET /screening/ HTTP/1.1" 200 -
+[2026-07-28 11:51:42] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:51:42] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+[2026-07-28 11:51:42] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:51:42] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+[2026-07-28 11:51:43] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:51:43] "GET /dashboard HTTP/1.1" 200 -
+[2026-07-28 11:51:43] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:51:43] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+[2026-07-28 11:51:43] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:51:43] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+[2026-07-28 11:51:43] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:51:43] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:51:49] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:51:49] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:51:54] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:51:54] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:51:59] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:51:59] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:52:04] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:52:04] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:52:09] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:52:09] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:52:14] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:52:14] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:52:19] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:52:19] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:52:24] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:52:24] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:52:31] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:52:31] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:52:35] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:52:35] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:52:40] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:52:40] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:52:45] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:52:45] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:52:50] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:52:50] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:52:55] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:52:55] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:53:01] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:53:01] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:53:06] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:53:06] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:53:11] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:53:11] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:53:16] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:53:16] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:53:21] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:53:21] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:53:26] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:53:26] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:53:31] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:53:31] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:53:36] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:53:36] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:53:42] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:53:42] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:53:47] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:53:47] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:53:52] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:53:52] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:53:57] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:53:57] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:54:02] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:54:02] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:54:07] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:54:07] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:54:12] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:54:12] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:54:17] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:54:17] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:54:22] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:54:22] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:54:27] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:54:27] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:54:32] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:54:32] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:54:37] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:54:37] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:54:42] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:54:42] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:54:47] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:54:47] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:54:52] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:54:52] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:54:58] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:54:58] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:55:03] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:55:03] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:55:08] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:55:08] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:55:13] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:55:13] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:55:18] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:55:18] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:55:23] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:55:23] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:55:29] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:55:29] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:55:34] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:55:34] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:55:39] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:55:39] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:55:44] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:55:44] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:55:50] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:55:50] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:55:55] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:55:55] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:56:00] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:56:00] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:56:05] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:56:05] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:56:10] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:56:10] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:56:15] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:56:15] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:56:20] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:56:20] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:56:25] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:56:25] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:56:30] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:56:30] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:56:35] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:56:35] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:56:40] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:56:40] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:56:45] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:56:45] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:56:50] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:56:50] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:56:55] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:56:55] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:57:00] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:57:00] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:57:05] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:57:05] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:57:10] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:57:10] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:57:15] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:57:15] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:57:20] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:57:20] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:57:25] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:57:25] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:57:30] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:57:30] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:57:35] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:57:35] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:57:40] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:57:40] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:57:45] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:57:45] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:57:50] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:57:50] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:57:55] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:57:55] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:58:00] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:58:00] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:58:05] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:58:05] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:58:10] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:58:10] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:58:16] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:58:16] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:58:21] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:58:21] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:58:26] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:58:26] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:58:31] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:58:31] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:58:37] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:58:37] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:58:42] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:58:42] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:58:47] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:58:47] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:58:52] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:58:52] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:58:57] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:58:57] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:59:02] INFO [werkzeug]  * Detected change in 'C:\\Users\\Hiren Patel\\Downloads\\AI_Resume_Screening2\\ai\\knowledge_base.py', reloading
+[2026-07-28 11:59:02] INFO [werkzeug]  * Restarting with watchdog (windowsapi)
+[2026-07-28 11:59:03] INFO [app] Logging initialized.
+[2026-07-28 11:59:03] INFO [app] Database initialized successfully.
+[2026-07-28 11:59:03] INFO [app] Auth database initialized successfully.
+[2026-07-28 11:59:09] INFO [app] spaCy NER model loaded successfully.
+[2026-07-28 11:59:09] WARNING [werkzeug]  * Debugger is active!
+[2026-07-28 11:59:09] INFO [werkzeug]  * Debugger PIN: 298-363-501
+[2026-07-28 11:59:09] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:59:09] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:59:09] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:59:09] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:59:12] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:59:12] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:59:17] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:59:17] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:59:22] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:59:22] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:59:27] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:59:27] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:59:32] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:59:32] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:59:37] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:59:37] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:59:43] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:59:43] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:59:48] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:59:48] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:59:53] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:59:53] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 11:59:58] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 11:59:58] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 12:00:03] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 12:00:03] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 12:00:08] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 12:00:08] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 12:00:13] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 12:00:13] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 12:00:18] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 12:00:18] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 12:00:23] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 12:00:23] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 12:00:28] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 12:00:28] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 12:00:33] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 12:00:33] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 12:00:38] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 12:00:38] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 12:00:44] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 12:00:44] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 12:00:49] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 12:00:49] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 12:00:54] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 12:00:54] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 12:00:59] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 12:00:59] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 12:01:04] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 12:01:04] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 12:01:09] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 12:01:09] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 12:01:14] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 12:01:14] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 12:01:19] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 12:01:19] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 12:01:24] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 12:01:24] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 12:01:29] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 12:01:29] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 12:01:34] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 12:01:34] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 12:01:39] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 12:01:39] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 12:01:44] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 12:01:44] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 12:01:49] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 12:01:49] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 12:01:54] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 12:01:54] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 12:01:59] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 12:01:59] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 12:02:04] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 12:02:04] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 12:02:10] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 12:02:10] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 12:02:15] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 12:02:15] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 12:02:20] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 12:02:20] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 12:02:25] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 12:02:25] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 12:02:30] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 12:02:30] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 12:02:35] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 12:02:35] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 12:02:40] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 12:02:40] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 12:02:45] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 12:02:45] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 12:02:50] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 12:02:50] "GET /api/kpis HTTP/1.1" 200 -
+[2026-07-28 12:02:55] INFO [werkzeug] 127.0.0.1 - - [28/Jul/2026 12:02:55] "GET /api/kpis HTTP/1.1" 200 -
